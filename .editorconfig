@@ -10,6 +10,6 @@ end_of_line = lf # 控制换行类型（lf | cr | crlf）
 insert_final_newline = true # 去除行首的任意空白字符
 trim_trailing_whitespace = true # 始终在文件末尾插入一个新行
 
-[*.md] # 表示 md 文件适用一下规则
+[*.md] # 表示 md 文件适用以下规则
 insert_final_newline = false
 trim_trailing_whitespace = false
