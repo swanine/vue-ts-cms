@@ -38,8 +38,6 @@ class SWANRequest {
     // 添加所有的实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有的实例都有的拦截器: 请求成功拦截')
-
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -50,7 +48,6 @@ class SWANRequest {
         return config
       },
       (err) => {
-        console.log('所有的实例都有的拦截器: 请求失败拦截')
         return err
       }
     )
@@ -58,27 +55,25 @@ class SWANRequest {
     //全局响应拦截器
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有的实例都有的拦截器: 响应成功拦截')
-
         // 将loading移除
         this.loading?.close()
 
         const data = res.data
-        if (data.returnCode === '-1001') {
+        if (data?.returnCode === '-1001') {
           console.log('请求失败~, 错误信息')
         } else {
           return data
         }
       },
       (err) => {
-        console.log('所有的实例都有的拦截器: 响应失败拦截')
         // 将loading移除
         this.loading?.close()
 
-        // 例子: 判断不同的HttpErrorCode显示不同的错误信息
-        if (err.response.status === 404) {
-          console.log('404的错误~')
-        }
+        // if (err.response.status === 404) {
+        //   console.log('404的错误~')
+        // } else if (err.response.status === 400) {
+        //   console.log('账号密码有误~')
+        // }
         return err
       }
     )
