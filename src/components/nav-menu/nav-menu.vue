@@ -15,6 +15,7 @@
       active-text-color="#409eff"
       unique-opened
       :collapse="isCollapse"
+      router
     >
       <tree-menu :userMenus="userMenu" />
     </el-menu>

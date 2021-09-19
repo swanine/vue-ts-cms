@@ -1,9 +1,9 @@
 <template>
   <template v-for="menu in userMenus">
     <el-sub-menu
-      v-if="menu.children && menu.children.length > 0"
+      v-if="menu.children && menu.type == 1"
       :key="menu.id"
-      :index="menu.id + ''"
+      :index="menu.url"
     >
       <template #title>
         <i :class="menu.icon"></i>
@@ -11,12 +11,9 @@
       </template>
       <tree-menu :userMenus="menu.children" />
     </el-sub-menu>
-    <el-menu-item
-      v-else-if="menu.type == 1 || 3"
-      :index="menu.id + ''"
-      :key="menu.id"
-      >{{ menu.name }}</el-menu-item
-    >
+    <el-menu-item v-else-if="menu.type == 2" :index="menu.url" :key="menu.id">{{
+      menu.name
+    }}</el-menu-item>
   </template>
 </template>
 
