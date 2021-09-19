@@ -48,6 +48,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 路由跳转首页
       router.push('/main')
     },
+    // 刷新后讲本地存储重新存放store
     loadLocalStorage({ commit }) {
       const token = localCache.getCache('token')
       if (token) {
