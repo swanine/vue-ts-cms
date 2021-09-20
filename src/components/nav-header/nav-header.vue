@@ -1,6 +1,14 @@
 <template>
   <div class="nav-header">
-    <i :class="iconClass" @click="closeMenu"></i>
+    <div class="header-left">
+      <i :class="iconClass" @click="closeMenu"></i>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          ><strong>{{ currentPath.parent }}</strong></el-breadcrumb-item
+        >
+        <el-breadcrumb-item>{{ currentPath.title }}</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <div class="user">
       <div class="message">
         <el-button icon="el-icon-message" circle></el-button>
@@ -10,7 +18,7 @@
           <el-avatar icon="el-icon-user-solid"></el-avatar>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="a">用户信息</el-dropdown-item>
+              <el-dropdown-item command="a">swanine</el-dropdown-item>
               <el-dropdown-item divided command="b">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -23,12 +31,15 @@
 <script lang="ts">
 import { defineComponent, computed, watch, ref } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import localCache from '@/utils/cache'
 
 export default defineComponent({
   setup() {
     const router = useRouter()
+    const route = useRoute()
+    // 当前路径
+    const currentPath = computed(() => route.meta)
 
     const store = useStore()
     const iconClass = ref('el-icon-s-fold')
@@ -56,7 +67,8 @@ export default defineComponent({
     return {
       closeMenu,
       iconClass,
-      handleCommand
+      handleCommand,
+      currentPath
     }
   }
 })
@@ -68,6 +80,11 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
   .el-icon-s-fold,
   .el-icon-s-unfold {
     font-size: 26px;
