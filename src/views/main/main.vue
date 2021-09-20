@@ -7,7 +7,11 @@
       <el-header class="page-header">
         <navHeader />
       </el-header>
-      <el-main class="page-content">Main</el-main>
+      <el-main class="page-content">
+        <div class="page-wrapper">
+          <router-view></router-view>
+        </div>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -72,5 +76,12 @@ export default defineComponent({
 
 body > .el-container {
   margin-bottom: 40px;
+}
+
+.page-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 }
 </style>
