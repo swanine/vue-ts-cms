@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search-info">
     <formInput />
   </div>
 </template>
@@ -17,4 +17,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.search-info {
+  margin: 30px 0;
+}
+</style>
