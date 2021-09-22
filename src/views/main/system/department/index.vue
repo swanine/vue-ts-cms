@@ -1,5 +1,5 @@
 <template>
-  <div>department</div>
+  <div>department页面</div>
 </template>
 
 <script lang="ts">
