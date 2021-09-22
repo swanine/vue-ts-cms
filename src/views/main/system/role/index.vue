@@ -1,5 +1,5 @@
 <template>
-  <div>role</div>
+  <div>role页面</div>
 </template>
 
 <script lang="ts">
