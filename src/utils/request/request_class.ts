@@ -79,7 +79,7 @@ class SWANRequest {
     )
   }
 
-  request<T>(config: SWANRequestConfig<T>): Promise<T> {
+  request<T = any>(config: SWANRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 1.单个请求对请求config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -113,11 +113,11 @@ class SWANRequest {
     })
   }
 
-  get<T>(config: SWANRequestConfig<T>): Promise<T> {
+  get<T = any>(config: SWANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: SWANRequestConfig<T>): Promise<T> {
+  post<T = any>(config: SWANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
