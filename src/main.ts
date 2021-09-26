@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 // import { globalRegister } from './global'
+import registerProperties from '@/global/register-properties'
 import 'normalize.css'
 import './assets/css/base.less'
 import { setupStore } from '@/store/index'
@@ -15,4 +16,9 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 const app = createApp(App)
 // globalRegister(app)
 setupStore()
-app.use(router).use(store).use(ElementPlus, { locale: zhCn }).mount('#app')
+app
+  .use(router)
+  .use(store)
+  .use(ElementPlus, { locale: zhCn })
+  .use(registerProperties)
+  .mount('#app')
