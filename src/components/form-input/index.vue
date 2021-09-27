@@ -14,17 +14,17 @@
         ><div class="grid-content bg-purple-light">
           <el-form-item label="用户名">
             <el-input
-              v-model.trim="ruleForm.user"
+              v-model.trim="ruleForm.name"
               placeholder="请输入用户名"
             ></el-input>
           </el-form-item></div
       ></el-col>
       <el-col :span="7"
         ><div class="grid-content bg-purple">
-          <el-form-item label="用户名">
+          <el-form-item label="真实姓名">
             <el-input
-              v-model.trim="ruleForm.user"
-              placeholder="请输入用户名"
+              v-model.trim="ruleForm.realname"
+              placeholder="请输入真实姓名"
             ></el-input>
           </el-form-item></div
       ></el-col>
@@ -33,10 +33,10 @@
     <el-row justify="space-around">
       <el-col :span="7"
         ><div class="grid-content bg-purple">
-          <el-form-item label="id">
+          <el-form-item label="手机号">
             <el-input
-              v-model.number="ruleForm.id"
-              placeholder="请输入id"
+              v-model.number="ruleForm.cellphone"
+              placeholder="请输入手机号"
             ></el-input>
           </el-form-item></div
       ></el-col>
@@ -44,7 +44,7 @@
         ><div class="grid-content bg-purple-light">
           <el-form-item label="创建时间">
             <el-date-picker
-              v-model="ruleForm.dateValue"
+              v-model="ruleForm.createAt"
               type="datetimerange"
               range-separator="至"
               start-placeholder="开始日期"
@@ -63,6 +63,7 @@
                   <el-button
                     style="width: 120px"
                     type="primary"
+                    @click="queryForm"
                     icon="el-icon-search"
                     >查询</el-button
                   >
@@ -91,26 +92,37 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  setup() {
+  emits: ['handleQueryClick'],
+  setup(props, { emit }) {
     // 表单
     const ruleForm = ref({
       id: '',
-      user: '',
-      dateValue: '',
-      defaultTime: [new Date(2000, 1, 1, 12, 0, 0)] // '12:00:00'
+      name: '',
+      realname: '',
+      cellphone: '',
+      createAt: ''
+      // defaultTime: [new Date(2000, 1, 1, 12, 0, 0)] // '12:00:00'
     })
     // 重置表单数据
     function resetForm() {
       ruleForm.value = {
         id: '',
-        user: '',
-        dateValue: '',
-        defaultTime: [new Date(2000, 1, 1, 12, 0, 0)] // '12:00:00'
+        name: '',
+        realname: '',
+        cellphone: '',
+        createAt: ''
+        // defaultTime: [new Date(2000, 1, 1, 12, 0, 0)] // '12:00:00'
       }
+    }
+
+    // 查询表单
+    function queryForm() {
+      emit('handleQueryClick', ruleForm.value)
     }
     return {
       resetForm,
-      ruleForm
+      ruleForm,
+      queryForm
     }
   }
 })
