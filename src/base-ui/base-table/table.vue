@@ -44,11 +44,11 @@
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          v-model:current-page="currentPage"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="5"
+          :current-page="page.currentPage"
+          :page-sizes="[5, 20, 30, 40]"
+          :page-size="page.pageSize"
           layout="total, sizes, prev, pager, next"
-          :total="40"
+          :total="dataCount"
         >
         </el-pagination>
       </slot>
@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
@@ -68,6 +68,9 @@ export default defineComponent({
     listData: {
       type: Array,
       required: true
+    },
+    dataCount: {
+      type: Number
     },
     propsList: {
       type: Array,
@@ -80,26 +83,29 @@ export default defineComponent({
     showSelectColumn: {
       type: Boolean,
       default: false
+    },
+    page: {
+      type: Object,
+      default: () => ({ currentPage: 1, pageSize: 5 })
     }
   },
-  setup() {
+  emits: ['update:page'],
+  setup(props, { emit }) {
     // 选中后事件
     function handleSelect(value: any) {
       console.log(value)
     }
     // 分页事件
-    let currentPage = ref(1)
-    function handleSizeChange(val: any) {
-      console.log(`每页 ${val} 条`)
+    function handleSizeChange(pageSize: number) {
+      emit('update:page', { ...props.page, pageSize })
     }
-    function handleCurrentChange(val: any) {
-      console.log(`当前页: ${val}`)
+    function handleCurrentChange(currentPage: number) {
+      emit('update:page', { ...props.page, currentPage })
     }
     return {
       handleSelect,
       handleSizeChange,
-      handleCurrentChange,
-      currentPage
+      handleCurrentChange
     }
   }
 })
