@@ -1,5 +1,6 @@
 export const contentTableConfig = {
   title: '用户数据',
+  buttonText: '新建用户',
   // 表格头数据
   propsList: [
     { prop: 'name', label: '用户名', minWidth: '100' },
