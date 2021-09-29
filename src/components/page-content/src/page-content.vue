@@ -8,7 +8,32 @@
     >
       <!-- 表格头部插槽 -->
       <template #headerHandler>
-        <el-button type="primary" size="small">新建用户</el-button>
+        <el-button type="primary" size="small">{{
+          contentTableConfig.buttonText
+        }}</el-button>
+      </template>
+
+      <template #oldPrice="scope">
+        {{ price(scope.row.oldPrice) }}
+      </template>
+      <template #newPrice="scope">
+        {{ price(scope.row.newPrice) }}
+      </template>
+      <!-- 商品图片插槽 -->
+      <template #image="scope">
+        <el-image
+          style="width: 80px"
+          :src="scope.row.imgUrl"
+          :preview-src-list="[scope.row.imgUrl]"
+        >
+        </el-image>
+      </template>
+
+      <!-- 商品上架状态 -->
+      <template #enable="scope">
+        <el-tag :type="scope.row.status == 1 ? 'success' : 'danger'">{{
+          scope.row.status == 1 ? '上架' : '下架'
+        }}</el-tag>
       </template>
       <!-- 用户状态标签 -->
       <template #status="scope">
@@ -66,6 +91,11 @@ export default defineComponent({
     }
   },
   setup(props) {
+    // 商品价格格式化
+    const price = function (p: string) {
+      const price = parseInt(p).toFixed(2)
+      return '¥' + price
+    }
     // 分页功能模块
     const pageInfo = ref({
       currentPage: 1,
@@ -120,7 +150,8 @@ export default defineComponent({
       handleDelete,
       getPageData,
       dataCount,
-      pageInfo
+      pageInfo,
+      price
     }
   },
   components: {
