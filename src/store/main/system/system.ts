@@ -11,7 +11,9 @@ const systemModule: Module<ISystemState, IRootState> = {
       userList: [],
       userCount: 0,
       roleList: [],
-      roleCount: 0
+      roleCount: 0,
+      goodsList: [],
+      goodsCount: 0
     }
   },
   mutations: {
@@ -26,6 +28,12 @@ const systemModule: Module<ISystemState, IRootState> = {
     },
     changeRoleCount(state, roleCount: number) {
       state.roleCount = roleCount
+    },
+    changeGoodsList(state, goodsList: any[]) {
+      state.goodsList = goodsList
+    },
+    changeGoodsCount(state, goodsCount: number) {
+      state.goodsCount = goodsCount
     }
   },
   getters: {
@@ -37,6 +45,8 @@ const systemModule: Module<ISystemState, IRootState> = {
             return state.userList
           case 'Role':
             return state.roleList
+          case 'Goods':
+            return state.goodsList
         }
       }
     },
@@ -47,6 +57,8 @@ const systemModule: Module<ISystemState, IRootState> = {
             return state.userCount
           case 'Role':
             return state.roleCount
+          case 'Goods':
+            return state.goodsCount
         }
       }
     }
@@ -62,6 +74,9 @@ const systemModule: Module<ISystemState, IRootState> = {
           break
         case 'Role':
           pageUrl = '/role/list'
+          break
+        case 'Goods':
+          pageUrl = '/goods/list'
           break
       }
       // 对页面发送网络请求
