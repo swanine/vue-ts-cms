@@ -10,9 +10,9 @@
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
-      background-color="#0c2135"
-      text-color="#c0c4cc"
-      active-text-color="#409eff"
+      background-color="#0061f7"
+      text-color="#99c0fc"
+      active-text-color="#fff"
       unique-opened
       :collapse="isCollapse"
       router
@@ -70,7 +70,7 @@ export default defineComponent({
   .logo-wrapper {
     width: 100%;
     height: 70px;
-    background-color: #d1d1d1;
+    background-color: rgb(0, 97, 247);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,6 +98,7 @@ export default defineComponent({
       text-align: left;
       margin-right: 10px;
       transition: transform 620ms;
+      color: #fff;
       h1 {
         font-size: 20px;
       }
