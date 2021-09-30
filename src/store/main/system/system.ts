@@ -8,20 +8,22 @@ const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state() {
     return {
-      userList: [],
-      userCount: 0,
+      usersList: [],
+      usersCount: 0,
       roleList: [],
       roleCount: 0,
       goodsList: [],
-      goodsCount: 0
+      goodsCount: 0,
+      menuList: [],
+      menuCount: 0
     }
   },
   mutations: {
-    changeUserList(state, userList: any[]) {
-      state.userList = userList
+    changeUsersList(state, userList: any[]) {
+      state.usersList = userList
     },
-    changeUserCount(state, userCount: number) {
-      state.userCount = userCount
+    changeUsersCount(state, userCount: number) {
+      state.usersCount = userCount
     },
     changeRoleList(state, roleList: any[]) {
       state.roleList = roleList
@@ -34,6 +36,12 @@ const systemModule: Module<ISystemState, IRootState> = {
     },
     changeGoodsCount(state, goodsCount: number) {
       state.goodsCount = goodsCount
+    },
+    changeMenuList(state, menuList: any[]) {
+      state.menuList = menuList
+    },
+    changeMenuCount(state, menuCount: number) {
+      state.goodsCount = menuCount
     }
   },
   getters: {
@@ -41,24 +49,28 @@ const systemModule: Module<ISystemState, IRootState> = {
     pageListData(state) {
       return (pageName: string) => {
         switch (pageName) {
-          case 'User':
-            return state.userList
+          case 'Users':
+            return state.usersList
           case 'Role':
             return state.roleList
           case 'Goods':
             return state.goodsList
+          case 'Menu':
+            return state.menuList
         }
       }
     },
     pageDataCount(state) {
       return (pageName: string) => {
         switch (pageName) {
-          case 'User':
-            return state.userCount
+          case 'Users':
+            return state.usersCount
           case 'Role':
             return state.roleCount
           case 'Goods':
             return state.goodsCount
+          case 'Menu':
+            return state.menuCount
         }
       }
     }
@@ -69,7 +81,7 @@ const systemModule: Module<ISystemState, IRootState> = {
       const pageName = payload.pageName
       let pageUrl = ''
       switch (pageName) {
-        case 'User':
+        case 'Users':
           pageUrl = '/users/list'
           break
         case 'Role':
@@ -77,6 +89,9 @@ const systemModule: Module<ISystemState, IRootState> = {
           break
         case 'Goods':
           pageUrl = '/goods/list'
+          break
+        case 'Menu':
+          pageUrl = '/menu/list'
           break
       }
       // 对页面发送网络请求
