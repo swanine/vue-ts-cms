@@ -59,7 +59,8 @@ export default defineComponent({
 }
 
 .el-aside {
-  background-color: #0c2135;
+  // background-color: #161624;
+  background-color: rgb(0, 97, 247);
   color: var(--el-text-color-primary);
   text-align: center;
   transition: width 0.5s ease-in-out;
@@ -69,7 +70,7 @@ export default defineComponent({
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: #f0f2fa;
   color: var(--el-text-color-primary);
   text-align: center;
 }
@@ -82,7 +83,6 @@ body > .el-container {
   overflow-y: scroll;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
   &::-webkit-scrollbar {
     display: none;
   }
