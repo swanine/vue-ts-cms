@@ -8,7 +8,7 @@
     >
       <!-- 表格头部插槽 -->
       <template #headerHandler>
-        <el-button type="primary" size="small">{{
+        <el-button v-if="isCreate" type="primary" size="small">{{
           contentTableConfig.buttonText
         }}</el-button>
       </template>
@@ -50,9 +50,10 @@
         <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
       </template>
       <!-- 操作按钮 -->
-      <template #handle>
+      <template #handle="scope">
         <div class="handle-btn">
           <el-button
+            v-if="isUpdate"
             icon="el-icon-edit"
             size="mini"
             type="text"
@@ -60,10 +61,11 @@
             >编辑</el-button
           >
           <el-button
+            v-if="isDelete"
             icon="el-icon-delete"
             size="mini"
             type="text"
-            @click="handleDelete"
+            @click="handleDelete(scope.row)"
             >删除</el-button
           >
         </div>
@@ -75,6 +77,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
+import { usePermission } from '@/hooks/use-permission'
 
 import { ElMessage } from 'element-plus'
 
@@ -96,6 +99,12 @@ export default defineComponent({
       const price = parseInt(p).toFixed(2)
       return '¥' + price
     }
+
+    // 获取页面按钮权限
+    const isCreate = usePermission(props.pageName, 'create')
+    const isUpdate = usePermission(props.pageName, 'update')
+    const isDelete = usePermission(props.pageName, 'delete')
+    const isQuery = usePermission(props.pageName, 'query')
     // 分页功能模块
     const pageInfo = ref({
       currentPage: 1,
@@ -105,6 +114,7 @@ export default defineComponent({
     const store = useStore()
     // 查询页面数据函数 dispatch systemModule 页面数据网络请求
     function getPageData(data: any = {}) {
+      if (!isQuery) return
       store.dispatch('systemModule/getPageList', {
         pageName: props.pageName,
         queryInfo: {
@@ -138,11 +148,8 @@ export default defineComponent({
       })
     }
 
-    const handleDelete = () => {
-      ElMessage.warning({
-        message: '删除功能完善中',
-        type: 'warning'
-      })
+    const handleDelete = (item: any) => {
+      console.log(item)
     }
     return {
       dataList,
@@ -151,7 +158,10 @@ export default defineComponent({
       getPageData,
       dataCount,
       pageInfo,
-      price
+      price,
+      isCreate,
+      isUpdate,
+      isDelete
     }
   },
   components: {
@@ -163,6 +173,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .page-content {
   padding: 0 20px;
-  border-top: 10px solid #e9eef3;
+  // border-top: 10px solid #e9eef3;
 }
 </style>
