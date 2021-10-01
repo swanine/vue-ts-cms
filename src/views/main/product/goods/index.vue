@@ -1,10 +1,12 @@
 <template>
   <el-scrollbar max-height="620px">
-    <!-- 商品数据表格组件 -->
-    <page-content
-      :contentTableConfig="contentTableConfig"
-      pageName="Goods"
-    ></page-content>
+    <div class="goods-wrapper">
+      <!-- 商品数据表格组件 -->
+      <page-content
+        :contentTableConfig="contentTableConfig"
+        pageName="Goods"
+      ></page-content>
+    </div>
   </el-scrollbar>
 </template>
 
@@ -26,3 +28,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less" scoped>
+.goods-wrapper {
+  background-color: #ffffff;
+}
+</style>
