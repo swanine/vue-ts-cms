@@ -1,11 +1,11 @@
 <template>
-  <el-scrollbar max-height="620px">
+  <div class="role-wrapper">
     <!-- 用户数据表格组件 -->
     <page-content
       :contentTableConfig="contentTableConfig"
       pageName="Role"
     ></page-content>
-  </el-scrollbar>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,3 +26,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="less" scoped>
+.role-wrapper {
+  background-color: #ffffff;
+}
+</style>
