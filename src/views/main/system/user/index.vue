@@ -1,11 +1,11 @@
 <template>
   <el-scrollbar max-height="620px">
     <div class="search-info">
-      <formInput @handleQueryClick="handleQueryClick" />
+      <formInput @handleQueryClick="handleQueryClick" class="form-input" />
       <!-- 用户数据表格组件 -->
       <page-content
         :contentTableConfig="contentTableConfig"
-        pageName="User"
+        pageName="Users"
         ref="refPageContent"
       ></page-content>
     </div>
@@ -43,5 +43,9 @@ export default defineComponent({
 <style lang="less" scoped>
 .search-info {
   padding-top: 30px;
+  background-color: #ffffff;
+  .form-input {
+    border-bottom: 10px solid #f0f2fa;
+  }
 }
 </style>
