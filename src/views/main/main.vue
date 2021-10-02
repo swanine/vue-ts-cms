@@ -60,7 +60,7 @@ export default defineComponent({
 
 .el-aside {
   // background-color: #161624;
-  background-color: rgb(0, 97, 247);
+  background-color: #161624;
   color: var(--el-text-color-primary);
   text-align: center;
   transition: width 0.5s ease-in-out;
@@ -72,7 +72,6 @@ export default defineComponent({
 .el-main {
   background-color: #f0f2fa;
   color: var(--el-text-color-primary);
-  text-align: center;
 }
 
 body > .el-container {

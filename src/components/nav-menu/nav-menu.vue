@@ -8,10 +8,10 @@
       </div>
     </div>
     <el-menu
-      default-active="2"
+      default-active="/main/analysis/overview"
       class="el-menu-vertical-demo"
-      background-color="#0061f7"
-      text-color="#99c0fc"
+      background-color="#161624"
+      text-color="#a2a2a7"
       active-text-color="#fff"
       unique-opened
       :collapse="isCollapse"
@@ -70,7 +70,7 @@ export default defineComponent({
   .logo-wrapper {
     width: 100%;
     height: 70px;
-    background-color: rgb(0, 97, 247);
+    background-color: #161624;
     display: flex;
     align-items: center;
     justify-content: center;

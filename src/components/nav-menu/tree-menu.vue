@@ -32,4 +32,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-menu-item.is-active {
+  background-color: #444450 !important;
+}
+</style>
