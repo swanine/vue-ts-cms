@@ -13,6 +13,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/main',
+    redirect: '/main/analysis/overview',
     meta: {
       parent: '系统首页'
     },
