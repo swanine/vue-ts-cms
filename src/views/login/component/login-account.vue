@@ -32,8 +32,8 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const account = reactive({
-      name: localCache.getCache('account') ?? '',
-      password: localCache.getCache('password') ?? ''
+      name: localCache.getCache('account') ?? 'swanine',
+      password: localCache.getCache('password') ?? '12345'
     })
     //表单验证规则
     const rules = {
@@ -79,8 +79,17 @@ export default defineComponent({
             localCache.deleteCache('password')
           }
 
-          // 进行登录验证
-          store.dispatch('loginModule/accountLogin', { ...account })
+          // 验证显式账号 | 密码
+          if (account.name === 'swanine' && account.password == '12345') {
+            const realAccount = {
+              name: 'coderwhy',
+              password: '123456'
+            }
+            // 进行登录验证
+            store.dispatch('loginModule/accountLogin', { ...realAccount })
+          } else {
+            ElMessage.error('账号或密码错误，验证后再登录')
+          }
         } else {
           ElMessage.error('不输入完登毛呢登')
         }
@@ -101,5 +110,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped lang="less"></style>
