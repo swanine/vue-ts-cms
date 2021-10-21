@@ -1,7 +1,7 @@
 # vue3-ts-cms
 
 ## 关于
-这是基于 Vue3、Vuex、VueRouter、 ElementPlus 、TypeScript、Echart5 开箱即用的后台系统解决方案。
+这是基于 Vue3、Vuex、VueRouter、 ElementPlus 、TypeScript、Echart5 后台通用系统解决方案。
 
 ## 技术栈
 - 前端框架：Vue3.x
